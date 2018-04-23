@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+<title></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<style type="text/css">
+
+	.highlight {
+   	 	color:red;
+	}
+	body {
+		margin:0 auto;
+		margin-top: 2%;
+		background-color:rgb(150,234,184);
+		text-align:center;
+		max-width: 300px;
+	}
+
+	.input{
+		background-color:white;
+		width:94%;
+		height:10%;
+		padding:2%;
+		font-size:12px;
+		font-family:sans-serif;
+		margin-bottom: 2%;
+		text-align: left;
+	    }
+	.button{
+		
+		background-color:rgb(0,225,102);
+		width:60%;
+		height:10%;
+		border: none;
+    		color: white;
+		padding:2%;
+		font-family:sans-serif;
+		margin-bottom: 2%;
+		text-decoration: none;
+   		cursor: pointer;
+	}
+
+	img {
+		width:80%;
+		height:10%;
+		}
+
+</style>
+<script>
+/*scan function uses an array of phrases that make the user sound less confident. More phrases can be added.*/
+function scan(){
+var i;
+var words = ["I think","maybe","Maybe","might","I'm not sure","sorry","Sorry","not sure","Not sure","just","Just","I don't know"];
+for (i = 0; i < words.length; ++i) {
+/*changes the html around the weak phrase so that it's class is changed to the red text of the highlight class*/
+function highlight(text)
+{
+    inputText = document.getElementById("inputText")
+    var innerHTML = inputText.innerHTML
+    var index = innerHTML.indexOf(text)
+    if ( index >= 0 )
+    { 
+        innerHTML = innerHTML.substring(0,index) + "<span class='highlight' >" + innerHTML.substring(index,index+text.length) + "</span>" + innerHTML.substring(index + text.length);
+        inputText.innerHTML = innerHTML
+    }
+
+}
+highlight(words[i]);
+}};
+</script>
+<script>
+//empties the text field
+function reset(){
+	   var node = document.getElementById('inputText');
+	   while (node.hasChildNodes()) {
+           node.removeChild(node.firstChild);
+    
+};
+	node.textContent = "";
+};
+</script>
+</head>
+<body>
+
+<div id="inputText" class="input" contenteditable="plaintext-only"></div>
+<button class="button" onclick="scan()" >Scan</button>
+<button class="button" onclick="reset()">Reset</>
+
+</body>
+	
+</html>
